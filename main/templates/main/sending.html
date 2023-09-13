@@ -1,0 +1,26 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+
+{% block title %} Sending {% endblock %}
+
+
+{% block content %}
+    <div class="layout">
+        <h1 class="teg">НАПИШИ МЕЧТУ!!!</h1>
+    </div>
+        <a href="{% url 'home' %}"><button class="btn_home"> Главная</button></a>
+        <form class="primary-form" method="post">
+            {% csrf_token %}
+            <p class="user1">{{ user.first_name }}</p>
+            {{ form.content }}
+            <p>{{ comment_form.date}}</p>
+            <button class="btn2">Отправить</button>
+        </form>
+
+{% endblock %}

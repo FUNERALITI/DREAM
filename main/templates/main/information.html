@@ -1,0 +1,30 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+{% block title %} INFO {% endblock %}
+
+
+{% block content %}
+    <div class="layout">
+        <h1 class="teg">DREAM PROJECT</h1>
+        <p class="user">Добро Пожаловать, Мечтатель!</p>
+    </div>
+
+    <p class="info">
+        Как часто тебе говорят окружающие что у тебя ничего не получится?
+        <br>
+        Что мечта твоя  не для тебя, говорили забыть и не вспоминать?
+        <br>
+        Посмотри, ты не одинок!
+        <br>
+        Демонстрирую твоему вниманию проект, где ты можешь поделиться своим сокровенным,<br> своими мыслями, идеями и мечтами, найти единомышленников и обрести поддержку.
+        <br>
+        Дерзай!
+    </p>
+    <div class="reg">
+        <a href="{% url 'register' %}">
+            <button class="reg-button"> РЕГИСТРАЦИЯ </button>
+        </a>
+    </div>
+
+{% endblock %}

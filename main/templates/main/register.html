@@ -1,0 +1,30 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+
+
+{% block title %} REGISTRATION {% endblock %}
+
+{% block content %}
+    <div class="layout">
+        <h2 class="teg">РЕГИСТРАЦИЯ</h2>
+    </div>
+    <a href="{% url 'home' %}"><button class = "btn_home"> ГЛАВНАЯ</button></a>
+    <div class="left">
+        <form class="primary-form" method="post">
+            {% csrf_token %}
+            {{ user_form.first_name }}
+            {{ user_form.username }}
+            {{ user_form.email }}
+            {{ user_form.password1 }}
+            {{ user_form.password2 }}
+            <button class="btn2" type="submit">ЗАРЕГЕСТРИРОВАТЬСЯ</button>
+        </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'main/index.html' %}
+{% load static %}
+
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+
+{% block title %} comments {% endblock %}
+
+{% block content %}
+    <div>
+        <div class="layout">
+            <h1 class="teg">КОММЕНТАРИИ</h1>
+        </div>
+        <a href="{% url 'home' %}"><button class = "btn_home"> ГЛАВНАЯ</button></a>
+        <div class="features">
+            <div class="blog-container">
+                <h3>{{ post.name }}</h3>
+                <p>{{ post.content }}</p>
+                <p> Дата: {{ post.date }}</p>
+            </div>
+            <div class="comment-features">
+                <h1>Что ты думаешь об этом?</h1>
+                <div class="comment-container">
+
+                    {% for comment in post.comments.all %}
+                        <h3>{{ comment.name }}</h3>
+                        <p>{{ comment.content }}</p>
+                        <p>{{ comment.date }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+        <h2 class="add">Скажи свое мнение!</h2>
+        <div class="comments_form">
+            <form class="primary-form" method="post">
+                {% csrf_token %}
+                <p class="user1">{{ user.first_name }}</p>
+                <input type="text" name="content" placeholder="Комментарий" class="primary-input" />
+                <p>{{ comment_form.date}}</p>
+                <button class="btn2" type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

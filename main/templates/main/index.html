@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur&display=swap" rel="stylesheet">
+    <title>
+        {% block title %} Home {% endblock %}
+    </title>
+
+</head>
+<body class="body">
+    {% block content %}
+        <div class="layout">
+            <h1 class="teg">DREAM PROJECT</h1>
+            <p class="user">Привет, {{ user.first_name }}!</p>
+
+            <div class="butt">
+                <div class="dare">
+                    <a href="{% url 'sending' %}">
+                        <button class="dare-button"> ДЕРЗАЙ </button>
+                    </a>
+                </div>
+
+                <div class="publ">
+                    <a href="{% url 'blog' %}">
+                        <button class="publ-button"> ПУБЛИКАЦИИ </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</body>
+</html>
