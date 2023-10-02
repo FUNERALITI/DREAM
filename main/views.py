@@ -1,7 +1,8 @@
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Comment
-from .forms import PostForm, CommentForm, UserRegistrationForm
+from .forms import PostForm, CommentForm, UserRegistrationForm, LoginForm
 from django.views.generic import ListView
 
 
@@ -14,7 +15,7 @@ def info(request):
 
 
 class PostListView(ListView):
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-likes')
     context_object_name = 'posts'
     template_name = 'main/blog.html'
 
@@ -34,10 +35,10 @@ def sending_post(request):
     #     form = PostForm()
     # return render(request, 'main/sending.html', {'form': form, 'error': error})
     data = request.POST.copy()
-    data.update({'name': request.user.first_name})
+    data.update({'name': request.user.username})
     form = PostForm(data)
     if form.is_valid():
-        form.name = request.user.first_name
+        form.name = request.user.username
         form.save()
         return redirect('blog')
     else:
@@ -49,7 +50,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     error = ''
     data = request.POST.copy()
-    data.update({'name': request.user.first_name})
+    data.update({'name': request.user.username})
     comment_form = CommentForm(data)
     # if request.method == 'POST':
     #     comment_form = CommentForm(request.POST)
@@ -80,6 +81,25 @@ def register(request):
     else:
         user_form = UserRegistrationForm()
     return render(request, 'main/register.html', {'user_form': user_form})
+
+
+def log(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            user = authenticate(username=cd['username'], password=cd['password'])
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('home')
+                else:
+                    return HttpResponse('Disabled account')
+            else:
+                return redirect('log')
+    else:
+        form = LoginForm()
+    return render(request, 'main/log.html', {'form': form})
 
 
 def like_post(request, pk):

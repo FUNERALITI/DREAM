@@ -12,12 +12,12 @@
 
 {% block content %}
     <div class="layout">
-        <h1 class="teg">НАПИШИ МЕЧТУ!!!</h1>
+        <h1 class="teg">ВПЕРЁД!</h1>
     </div>
         <a href="{% url 'home' %}"><button class="btn_home"> Главная</button></a>
         <form class="primary-form" method="post">
             {% csrf_token %}
-            <p class="user1">{{ user.first_name }}</p>
+            <p class="user1">{{ user.username }}</p>
             {{ form.content }}
             <p>{{ comment_form.date}}</p>
             <button class="btn2">Отправить</button>

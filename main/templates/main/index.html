@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,18 +20,18 @@
     {% block content %}
         <div class="layout">
             <h1 class="teg">DREAM PROJECT</h1>
-            <p class="user">Привет, {{ user.first_name }}!</p>
+            <p class="user">Привет, {{ user.username }}!</p>
 
             <div class="butt">
                 <div class="dare">
                     <a href="{% url 'sending' %}">
-                        <button class="dare-button"> ДЕРЗАЙ </button>
+                        <button class="dare-button"> ПОДЕЛИСЬ МЕЧТОЙ </button>
                     </a>
                 </div>
 
                 <div class="publ">
                     <a href="{% url 'blog' %}">
-                        <button class="publ-button"> ПУБЛИКАЦИИ </button>
+                        <button class="publ-button"> НАШИ МЕЧТЫ </button>
                     </a>
                 </div>
             </div>

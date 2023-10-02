@@ -7,23 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Rakkas&display=swap" rel="stylesheet">
 
 
-{% block title %} REGISTRATION {% endblock %}
+{% block title %} LOGIN {% endblock %}
 
 {% block content %}
     <div class="layout">
-        <h2 class="teg-register">РЕГИСТРАЦИЯ</h2>
+        <h1 class="teg-login">ВХОД</h1>
     </div>
-    <!-- <a href="{% url 'home' %}"><button class = "btn_home"> ГЛАВНАЯ</button></a> -->
     <div class="left">
-        <form class="primary-form" method="post">
+        <form class="primary-form2" method="post">
             {% csrf_token %}
-            {{ user_form.first_name }}
-            {{ user_form.username }}
-            {{ user_form.password1 }}
-            {{ user_form.password2 }}
-            <button class="btn2" type="submit">ЗАРЕГЕСТРИРОВАТЬСЯ</button>
+            {{ form.username }}
+            {{ form.password }}
+            <button class="btn2" type="submit">ВОЙТИ</button>
         </form>
     </div>
-
-
 {% endblock %}
